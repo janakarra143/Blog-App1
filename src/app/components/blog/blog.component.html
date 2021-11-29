@@ -1,0 +1,24 @@
+<div class="container content">
+    <p class="header">{{blog.category}} <span>•</span> {{ blog.post_date | date }}</p>
+    <h1>{{blog.title}}</h1>
+    <p class="body">{{blog.body}}</p>
+    <div class="row authorrow">
+        <div  class='col-1 imageauthor text-center float-right'>
+            <img src={{blog.author_image}} class="img-fluid author" alt="Author">
+        </div>
+        <div class="col-4">
+            <p class="author">{{blog.author}}</p>
+            <p class="position">{{blog.author_title}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <a style="color: white;" class="btn btn-warning" routerLink="/edit/{{blog._id}}">Edit</a>
+        </div>
+        <div class="col-1">
+            <a class="btn btn-danger" (click)='deleteBlog(blog._id)'>Delete</a>
+        </div>
+    </div>
+    
+
+</div>

@@ -1,0 +1,41 @@
+
+<div class="container">
+    <h1>Add your Blog</h1>
+    <form>
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label for="category">Category:</label>
+            <input type="text" class="form-control" id="category" placeholder="ex. Design" [(ngModel)]="blog.category" name="category">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="imgurl">Image URL:</label>
+            <input type="url" class="form-control" id="imgurl" placeholder="ex. https://picsum.photos/200" [(ngModel)]="blog.image_url" name="image_url">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="postdate">Post Date:</label>
+            <input type="date" class="form-control" id="postdate" [(ngModel)]="blog.post_date" name="post_date">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" placeholder="ex. How tp be a successful UI/UX Designer" [(ngModel)]="blog.title" name="title">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="body">Body:</label>
+            <textarea type="date" class="form-control" id="body" placeholder="enter your blog here" [(ngModel)]="blog.body" name="body"></textarea>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="author">Author Name:</label>
+            <input type="text" class="form-control" id="author" placeholder="ex. William Tomas" [(ngModel)]="blog.author" name="author">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="authtitle">Author Title:</label>
+            <input type="text" class="form-control" id="authtitle" placeholder="ex. UI/UX Designer" [(ngModel)]="blog.author_title" name="author_title">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="authimage">Author Image URL:</label>
+            <input type="text" class="form-control" id="authimage" placeholder="ex. https://picsum.photos/200" [(ngModel)]="blog.author_image" name="author_image">
+          </div>
+        </div>
+        <button (click)=saveBlog() class="btn btn-dark touch">Submit Your Blog</button>
+      </form>
+</div>

@@ -1,0 +1,53 @@
+nav.navcont{
+    padding: 5px 15px;
+    margin-bottom: 50px;
+}
+
+nav  a.navibrand{
+    color: #30353c;
+    font-size: medium;
+    font-weight: 500;
+}
+
+nav div.navul{
+    justify-content: end;
+    padding: 0px 10px;
+}
+
+div ul li a.naviitem{
+    color: #30353c;
+    font-size: 14px;
+    font-weight: 450;
+    padding-left: 15px ;
+    padding-right: 15px ;
+}
+
+div ul li a.naviitem:hover{
+    color: #30353c;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 2px;
+    padding-left: 15px ;
+    padding-right: 15px ;
+}
+
+div ul li a.naviitem.active{
+    color: #30353c;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 2px;
+    padding-left: 15px ;
+    padding-right: 15px ;
+}
+
+button.touch{
+    background-color:black;
+    color: white;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 500;
+}

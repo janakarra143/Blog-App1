@@ -1,0 +1,40 @@
+<!-- <h1>List of Blogs</h1>
+<a routerLink="/create">Create Blog</a>
+<div *ngFor='let blog of blogs'>
+    <p>{{blog.title}}</p>
+    <div>{{blog.body}}</div>
+</div> -->
+
+<div class="container-fluid cont">
+    <div class="row">
+        <div  *ngFor='let blog of blogs' class="col-6">
+            <a routerLink="/blogs/{{blog._id}}"><img src={{blog.image_url}} class="img-fluid blogs" alt="Responsive image"></a>
+            <p class="header">{{blog.category}} <span>•</span> {{ blog.post_date | date }}</p>
+            <a class="badge badge-warning" routerLink="/blogs/{{blog._id}}">Edit</a>
+            <h2>{{blog.title}}</h2>
+            <p class="body">{{blog.body}}</p>
+    
+            <div style="margin-top: 0;" class="row">
+                <div  class='col-2 imageauthor text-center float-right'>
+                    <img src={{blog.author_image}} class="img-fluid author" alt="Author">
+                </div>
+                <div class="col-6">
+                    <p class="author">{{blog.author}}</p>
+                    <p class="position">{{blog.author_title}}</p>
+                </div>
+            </div>
+        </div>
+        
+        </div>        
+</div>
+
+<!-- <div class="container">
+    <ul>
+        <li *ngFor='let blog of blogs' ></li>
+
+    </ul>
+</div> -->
+
+
+
+

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlogsService } from 'src/app/services/blogs.service';
 import { Blog } from 'src/app/models/blog';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-blog',
@@ -10,17 +12,7 @@ import { Blog } from 'src/app/models/blog';
 })
 export class BlogComponent implements OnInit {
   blog: any;
-  currentBlog: Blog = {
-    id: '',
-    title: '',
-    body: '',
-    category: '',
-    image_url: '',
-    post_date: '',
-    author: '',
-    author_image: '',
-    author_title: ''
-  }
+
   constructor(private route: ActivatedRoute, private _blogsService: BlogsService, private _router: Router) {}
   ngOnInit() {
     this.getBlog(this.route.snapshot.params.id)
@@ -36,16 +28,7 @@ export class BlogComponent implements OnInit {
     })
   }
 
-  updateBlog(): void {
-    this._blogsService.updateBlog(this.currentBlog.id, this.currentBlog)
-      .subscribe(
-        response => {
-          console.log(response);
-        },
-        error => {
-          console.log(error);
-        });
-  }
+
 
   deleteBlog(id: any){
     this._blogsService.deleteBlog(id).subscribe(() =>{

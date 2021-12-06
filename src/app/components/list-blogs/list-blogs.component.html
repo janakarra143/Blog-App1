@@ -6,27 +6,131 @@
 </div> -->
 
 <div class="container-fluid cont">
-    <div class="row">
-        <div  *ngFor='let blog of blogs' class="col-6">
-            <a routerLink="/blogs/{{blog._id}}"><img src={{blog.image_url}} class="img-fluid blogs" alt="Responsive image"></a>
-            <p class="header">{{blog.category}} <span>•</span> {{ blog.post_date | date }}</p>
-            <a class="badge badge-warning" routerLink="/blogs/{{blog._id}}">Edit</a>
-            <h2>{{blog.title}}</h2>
-            <p class="body">{{blog.body}}</p>
-    
-            <div style="margin-top: 0;" class="row">
-                <div  class='col-2 imageauthor text-center float-right'>
-                    <img src={{blog.author_image}} class="img-fluid author" alt="Author">
-                </div>
-                <div class="col-6">
-                    <p class="author">{{blog.author}}</p>
-                    <p class="position">{{blog.author_title}}</p>
+
+        <div class="card-group">
+            <div class="card cards">
+                <div class="row">
+                    <div class="col-md-7">
+                        <a routerLink="/blogs/{{firstBlog._id}}"><img class="card-img-top"  src={{firstBlog.image_url}} alt="Card image cap"></a>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="card-body">
+                            <p class="header">{{firstBlog.category}} <span>•</span> {{firstBlog.post_date}} </p>
+                            <h2>{{firstBlog.title}}</h2>
+                            <p class="body truncate">{{firstBlog.body}}</p>
+  
+                        </div>
+                        <div style="background-color: white; border: none;" class="card-footer row">
+                            <div  class='col-1 imageauthor text-center float-right'>
+                                <img src={{firstBlog.author_image}} class="img-fluid author" alt="Author">
+                            </div>
+                            <div class="col-6">
+                                <p class="author">{{firstBlog.author}}</p>
+                                <p class="position">{{firstBlog.author_title}}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div> 
+        <div style="margin-top: 30px; " class="card-group">
+            <div style="padding-left: 20px;" class="card cards" *ngFor='let blog of blogs'>
+                <a routerLink="/blogs/{{blog._id}}"><img style="max-height: 500px;" src={{blog.image_url}} class="img-fluid blogs" alt="Responsive image"></a>
+                <div class="card-body">
+                    <p class="header">{{blog.category}} <span>•</span> {{ blog.post_date | date }}</p>
+                    <h2>{{blog.title}}</h2>
+                    <p class="body truncate">{{blog.body}}</p>
+                </div>
+                <div style="background-color: white; border: none;" class="card-footer row">
+                    <div style="margin-top: 0;" class="row">
+                        <div  class='col-2 imageauthor text-center float-right'>
+                            <img src={{blog.author_image}} class="img-fluid author" alt="Author">
+                        </div>
+                        <div class="col-6">
+                            <p class="author">{{blog.author}}</p>
+                            <p class="position">{{blog.author_title}}</p>
+                        </div>
+                    </div>
+                </div>
+            
+
+            </div>
         </div>
-        
-        </div>        
+ 
+          
 </div>
+
+<script>
+    const elm = document.querySelector('.truncate')
+let debounce;
+
+const myKnobs = new Knobs({
+  CSSVarTarget: elm,
+  visible: 2,
+  knobs: [
+    {
+      cssVar: ['line-clamp'],
+      label: 'Lines to clamp',
+      type: 'range',
+      value: 2,
+      min: 1,
+      max: 10,
+      step: 1,
+      onChange: checkTruncated
+    },
+    {
+      cssVar: ['width', '%'],
+      label: 'Width',
+      type: 'range',
+      value: 50,
+      min: 10,
+      max: 100,
+      step: 1,
+      onChange: checkTruncated
+    },
+    {
+      cssVar: ['font-size', 'em'],
+      label: 'Font size',
+      type: 'range',
+      value: 1,
+      min: .6,
+      max: 1.5,
+      step: .1,
+      onChange: checkTruncated
+    },
+    {
+      cssVar: ['word-break', 'break-all'],
+      label: 'Word Break',
+      type: 'checkbox',
+      checked: true,
+      value: 'break-all'
+    },
+    
+    "Readonly:",
+    {
+      label: 'Truncated detected',
+      type: 'checkbox',
+      disabled: true,
+      checked: true,
+      id: 'isTruncatedToggle'
+    }
+  ]
+})
+
+const isTextClamped = elm => elm.scrollHeight > elm.clientHeight
+
+
+function checkTruncated(){
+  clearTimeout(debounce)
+  debounce = setTimeout(() => {
+    
+    const clamped = isTextClamped(elm)
+    myKnobs.DOM.form.querySelector('#isTruncatedToggle').checked = clamped
+    elm.classList.toggle('clamped', clamped)
+  }
+  , 100)
+}
+</script>
 
 <!-- <div class="container">
     <ul>

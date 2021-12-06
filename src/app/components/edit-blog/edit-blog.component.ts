@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Blog } from 'src/app/models/blog';
 import { BlogsService } from 'src/app/services/blogs.service';
 
@@ -9,20 +10,36 @@ import { BlogsService } from 'src/app/services/blogs.service';
   styleUrls: ['./edit-blog.component.css']
 })
 export class EditBlogComponent implements OnInit {
-
-  public blog: Blog = new Blog();
-  constructor(private _blogService: BlogsService, private _router: Router) { }
+  id: any;
+  blog: any;
+  submitted = false;
+  constructor(private _blogService: BlogsService, private _router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(
+      params => this.id = params.get('id')
+    )
+    this.getBlog(this.id)
   }
 
-  editBlog() {
-    console.log(this.blog);
-    this._blogService.saveBlog(this.blog).subscribe(blog =>{
-      if (blog) {
-        this._router.navigateByUrl('/blogs')
-      }
+  getBlog(id: string) {
+    this._blogService.getBlogbyBlogId(id).subscribe(data => {
+
+      this.blog = data;
+      console.log(data)
+      console.log(this.blog.title)
     })
+  }
+
+  handleSubmit(f:NgForm){
+    this._blogService.updateBlog(this.id, f.value)
+    .subscribe(
+      data => {
+        this.submitted = true;
+        this._router.navigateByUrl('/blogs/'+ this.id);
+
+      }
+    )
   }
 
 }

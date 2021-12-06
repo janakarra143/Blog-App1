@@ -1,5 +1,5 @@
 export class Blog {
-    id: String;
+    _id: String;
     title: String;
     body: String;
     category: String;
